@@ -1,3 +1,4 @@
+import * as WebBrowser from "expo-web-browser";
 import React, { useEffect, Component } from "react";
 import {
   StyleSheet,
@@ -6,7 +7,8 @@ import {
   ScrollView,
   Clipboard,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Linking
 } from "react-native";
 import * as Contacts from "expo-contacts";
 import Selectbox from "./components/selectContact";
@@ -91,6 +93,12 @@ class ARCHI extends Component {
     );
   }
 
+  sendMessage() {
+	  WebBrowser.openBrowserAsync(
+      `https://wa.me/${this.state.number}?text=${this.state.encoded}`
+    );
+  }
+
   editMessage(val) {
     let message = val.nativeEvent.text;
     const hebrewLetters = [
@@ -133,7 +141,7 @@ class ARCHI extends Component {
   }
 
   emptyMessage() {
-    this.setState({ message: "" });
+    this.setState({ message: "", encoded: "" });
   }
 
   render() {
@@ -151,6 +159,12 @@ class ARCHI extends Component {
               <Text style={styles.text} selectable={true}>
                 https://wa.me/{this.state.number}?text={this.state.encoded}
               </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.sendMessage.bind(this)}>
+              <Text style={styles.button}>SEND</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.copyString.bind(this)}>
+              <Text style={styles.button}>COPY</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.emptyMessage.bind(this)}>
               <Text style={styles.button}>CLEAR</Text>
@@ -182,7 +196,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#07848933"
   },
   button: {
-    textAlign: "center",
+	textAlign: "center",
+	margin: 5,
     width: 60,
     padding: 5,
     borderRadius: 50,

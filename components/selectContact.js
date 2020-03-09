@@ -31,10 +31,10 @@ export default class Selectbox extends Component {
 	render() {
 		const { values, selectedValues } = this.state;
 		return (
-			<View style={{maxWidth: 400, marginTop: 30}}>
+			<View style={{maxWidth: 350, marginTop: 40}}>
 
 		<ThemeProvider theme={Colors}>
-			<View style={{ margin: 30 }}>
+			<View style={{ margin: 30, marginBottom: 0 }}>
 			{/* <View style={{ width: "100%", alignItems: "center" }}>
 				<Text style={{ fontSize: 30, paddingBottom: 20 }}>Demos</Text>
 			</View> */}
