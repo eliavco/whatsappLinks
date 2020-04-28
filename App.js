@@ -31,8 +31,10 @@ class ARCHI extends Component {
       number: "000000000",
 	  message: "",
 	  encoded: 'MESSAGE',
-      contactList: [],
-      rtl: false
+		contactList: [],
+	  name: '',
+		rtl: false,
+	  title: ''
     };
   }
 
@@ -40,7 +42,7 @@ class ARCHI extends Component {
     this.setState({ number: ans });
   }
 
-  findPhone(contact) {
+	findPhone(contact) {
     if (contact.phoneNumbers) {
       let phone = contact.phoneNumbers[0].number;
       if (phone.startsWith("+")) phone = phone.substring(1);
@@ -87,10 +89,22 @@ class ARCHI extends Component {
     })();
   }
 
-  copyString() {
+	copyString() {
+		const title = `<u>${this.state.title}</u>\n`;
+		const contactTitle = '<strong>איש קשר:</strong>';
+		const contact = `${this.state.name}\n${this.state.number}\n`;
+		const messageTitle = '<strong>תוכן ההודעה:</strong>';
+		const message = `${this.state.message}\n`;	
+		const actionTitle = '<strong>לשליחה:</strong>';
+		const action = `https://wa.me/${this.state.number}?text=${this.state.encoded}\n`;
+    Clipboard.setString(
+      `${title}\n${contactTitle}\n${contact}\n${messageTitle}\n${message}\n${actionTitle}\n${action}`
+	);
+  }
+	copyStringTwo() {
     Clipboard.setString(
       `https://wa.me/${this.state.number}?text=${this.state.encoded}`
-    );
+	);
   }
 
   sendMessage() {
@@ -139,23 +153,33 @@ class ARCHI extends Component {
     .replace(/"/g, "%22");
     this.setState({ message, encoded, rtl: hebrew });
   }
+	
+  editTitle(val) {
+    let title = val.nativeEvent.text;
+    this.setState({ title });
+  }
 
   emptyMessage() {
     this.setState({ message: "", encoded: "" });
   }
 
+	updateName(name) {
+		this.setState({ name });
+	}
+	
   render() {
     return (
       <View>
         <Selectbox
           ansMethod={this.updateNum.bind(this)}
+          ansMethodName={this.updateName.bind(this)}
           contactList={this.state.contactList}
           ref={this.selection}
         />
 
         <ScrollView>
           <View>
-            <TouchableOpacity onPress={this.copyString.bind(this)}>
+            <TouchableOpacity onPress={this.copyStringTwo.bind(this)}>
               <Text style={styles.text} selectable={true}>
                 https://wa.me/{this.state.number}?text={this.state.encoded}
               </Text>
@@ -175,7 +199,14 @@ class ARCHI extends Component {
               onChange={this.editMessage.bind(this)}
               multiline={true}
               placeholder={"message"}
-            ></TextInput>
+					></TextInput>
+					<TextInput
+						style={styles.textPad(this.state.rtl ? "right" : "left")}
+						value={this.state.title}
+						onChange={this.editTitle.bind(this)}
+						multiline={true}
+						placeholder={"title"}
+					></TextInput>
           </View>
         </ScrollView>
       </View>

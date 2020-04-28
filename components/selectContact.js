@@ -45,7 +45,8 @@ export default class Selectbox extends Component {
 				value={selectedValues[0]}
 				onChange={val => {
 					this.setState({ selectedValues: [val] });
-            		this.props.ansMethod(this.findNumForItem(val));
+					this.props.ansMethod(this.findNumForItem(val));
+					this.props.ansMethodName(val);
 				}}
 				hideInputFilter={false}
 				viewMargin="0 0 20px 0"
