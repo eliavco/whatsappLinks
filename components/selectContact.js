@@ -14,7 +14,7 @@ export default class Selectbox extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedValues: [],
+			selectedValues: [''],
 			values: props.contactList
 		}
 	}

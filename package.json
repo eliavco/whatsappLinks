@@ -9,20 +9,21 @@
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "expo": "~36.0.0",
-    "expo-contacts": "~8.0.0",
+    "expo": "^40.0.0",
+    "expo-contacts": "~8.6.0",
+    "expo-web-browser": "^8.6.0",
     "googleapis": "^39.2.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-multi-selectbox": "^1.2.8",
-    "react-native-svg": "^9.13.6",
-    "react-native-web": "~0.11.7",
+    "react-native-svg": "12.1.0",
+    "react-native-web": "~0.13.12",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
-    "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "babel-preset-expo": "8.3.0",
+    "@babel/core": "~7.9.0"
   },
   "private": true
 }

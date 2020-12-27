@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "whatsappMessageLinks",
+    "name": "Whatsapp Message Links",
     "slug": "whatsapp-links",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
